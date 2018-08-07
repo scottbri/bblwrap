@@ -1,6 +1,6 @@
 # bblwrap.sh
-bblwrap is a human interactive wrapper script for the Bosh Boot Loader (aka: bbl).
-since `bbl` is pronounced *("bubble")*, welcome to *("bubble wrap")*
+bblwrap is a human interactive wrapper script for the Bosh Boot Loader (aka: bbl).  
+Since `bbl` is pronounced *("bubble")*, welcome to *("bubble wrap")*
 
 `bblwrap.sh` currently supports GCP, Microsoft Azure, and is stubbed but as yet nonfunctional for AWS, and vSphere.
 
