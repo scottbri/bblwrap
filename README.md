@@ -1,2 +1,4 @@
 # bblwrap
-wrapper for Bosh Boot Loader bbl
+wrapper for the Bosh Boot Loader aka: bbl
+
+## 
