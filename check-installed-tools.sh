@@ -39,6 +39,18 @@ else
     echo "yes"
 fi
 
+echo -n "checking if gcloud-cli is installed... "
+which gcloud > /dev/null
+if [ "$?" -ne "0" ]; then
+    echo "no."
+    echo "please install gcloud cli"
+    echo "OSX: https://cloud.google.com/sdk/docs/quickstart-macos"
+    echo "Ubuntu: https://cloud.google.com/sdk/docs/quickstart-debian-ubuntu"
+    echo ""
+else
+    echo "yes"
+fi
+
 echo -n "checking if bosh-cli is installed... "
 which bosh > /dev/null
 if [ "$?" -ne "0" ]; then
