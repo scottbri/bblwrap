@@ -80,6 +80,8 @@ if [ $BBL_IAAS == "gcp" ]; then
 	echo "$BBL_GCP_SERVICE_ACCOUNT_KEY"
 	touch $BBL_GCP_SERVICE_ACCOUNT_KEY;  chmod 700 $BBL_GCP_SERVICE_ACCOUNT_KEY
 	echo "$ gcloud iam service-accounts keys create --iam-account=\"${GCP_SERVICE_ACCOUNT_NAME}@${GCP_PROJECT_ID}.iam.gserviceaccount.com\" $BBL_GCP_SERVICE_ACCOUNT_KEY"
+	askYes "Are you good with me issuing the above command?"; RETVAL=$?
+	if [[ $RETVAL -eq 1 ]]; then echo "Bailing out now!  Good luck bbl-ing up on $BBL_IAAS!"; exit 1; fi
 	gcloud iam service-accounts keys create --iam-account="${GCP_SERVICE_ACCOUNT_NAME}@${GCP_PROJECT_ID}.iam.gserviceaccount.com" $BBL_GCP_SERVICE_ACCOUNT_KEY
 	RETVAL=$?
 	if [[ $RETVAL -eq 1 ]]; then echo "Hmmm.  You may need to execute a \"gcloud init\" if you're having issues with permissions."; exit 1; fi
@@ -87,6 +89,8 @@ if [ $BBL_IAAS == "gcp" ]; then
 
 	sleep 1; echo ""; echo "Binding the service account to the project with editor role"
 	echo "gcloud projects add-iam-policy-binding ${GCP_PROJECT_ID} --member=\"serviceAccount:${GCP_SERVICE_ACCOUNT_NAME}@${GCP_PROJECT_ID}.iam.gserviceaccount.com\" --role='roles/editor'"
+	askYes "Are you good with me issuing the above command?"; RETVAL=$?
+	if [[ $RETVAL -eq 1 ]]; then echo "Bailing out now!  Good luck bbl-ing up on $BBL_IAAS!"; exit 1; fi
 	gcloud projects add-iam-policy-binding ${GCP_PROJECT_ID} --member="serviceAccount:${GCP_SERVICE_ACCOUNT_NAME}@${GCP_PROJECT_ID}.iam.gserviceaccount.com" --role='roles/editor'
 	RETVAL=$?
 	if [[ $RETVAL -eq 1 ]]; then echo "Hmmm.  You may need to execute a \"gcloud init\" if you're having issues with permissions."; exit 1; fi
@@ -164,6 +168,8 @@ elif [ $BBL_IAAS == "azure" ]; then
 	echo "$ az ad app create --display-name \"$AZURE_SP_DISPLAY_NAME\" \\"
 	echo "	--password \"$BBL_AZURE_CLIENT_SECRET\" --homepage \"$AZURE_SP_HOMEPAGE\" \\"
 	echo "	--identifier-uris \"$AZURE_SP_IDENTIFIER_URI\""
+	askYes "Are you good with me issuing the above command?"; RETVAL=$?
+	if [[ $RETVAL -eq 1 ]]; then echo "Bailing out now!  Good luck bbl-ing up on $BBL_IAAS!"; exit 1; fi
 	AZ_AD_APP_CREATE="`az ad app create --display-name \"$AZURE_SP_DISPLAY_NAME\" \
 		--password \"$BBL_AZURE_CLIENT_SECRET\" --homepage \"$AZURE_SP_HOMEPAGE\" \
 		--identifier-uris \"$AZURE_SP_IDENTIFIER_URI\"`"
@@ -173,6 +179,8 @@ elif [ $BBL_IAAS == "azure" ]; then
 
 	echo ""; echo "Creating the Service Principal corresponding to the new Application"
 	echo "$ az ad sp create --id $BBL_AZURE_CLIENT_ID"
+	askYes "Are you good with me issuing the above command?"; RETVAL=$?
+	if [[ $RETVAL -eq 1 ]]; then echo "Bailing out now!  Good luck bbl-ing up on $BBL_IAAS!"; exit 1; fi
 	AZ_AD_SP_CREATE="`az ad sp create --id $BBL_AZURE_CLIENT_ID`"
 	if [ $DEBUG ]; then echo "$AZ_AD_SP_CREATE" >> $DEBUGFILE; fi
 
@@ -180,15 +188,19 @@ elif [ $BBL_IAAS == "azure" ]; then
 	sleep 45
 	echo ""; echo "Assigning the Service Principal to the Contributor Role"
 	echo "$ az role assignment create --assignee $BBL_AZURE_CLIENT_ID --role Contributor --scope /subscriptions/$BBL_AZURE_SUBSCRIPTION_ID"
+	askYes "Are you good with me issuing the above command?"; RETVAL=$?
+	if [[ $RETVAL -eq 1 ]]; then echo "Bailing out now!  Good luck bbl-ing up on $BBL_IAAS!"; exit 1; fi
 	AZ_ROLE_ASSIGNMENT_CREATE="`az role assignment create --assignee $BBL_AZURE_CLIENT_ID --role Contributor --scope /subscriptions/$BBL_AZURE_SUBSCRIPTION_ID`"
 	if [ $DEBUG ]; then echo "$AZ_ROLE_ASSIGNMENT_CREATE" >> $DEBUGFILE; fi
 
 	echo ""; echo "Registering the Subscription with Microsoft Storage, Network, and Compute"
 	echo "$ az provider register --namespace Microsoft.Storage"
-	az provider register --namespace Microsoft.Storage
 	echo "$ az provider register --namespace Microsoft.Network"
-	az provider register --namespace Microsoft.Network
 	echo "$ az provider register --namespace Microsoft.Compute"
+	askYes "Are you good with me issuing the above three (3) commands?"; RETVAL=$?
+	if [[ $RETVAL -eq 1 ]]; then echo "Bailing out now!  Good luck bbl-ing up on $BBL_IAAS!"; exit 1; fi
+	az provider register --namespace Microsoft.Storage
+	az provider register --namespace Microsoft.Network
 	az provider register --namespace Microsoft.Compute
 	
 	echo "Finished!  Here are the environment variables you need to set for bbl to deploy BOSH on Azure:"
