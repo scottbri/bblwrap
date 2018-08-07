@@ -28,7 +28,7 @@ A convenient helper script `check-installed-tools.sh` is provided that will look
 - [terraform](https://www.terraform.io/downloads.html) >= 0.11.0
 - ruby (necessary for bosh create-env)
 
-### Install bosh-bootloader by cloning this repo
+### Install bblwrap by cloning this repo
 
 ```sh
 $ git clone https://github.com/scottbri/bblwrap
