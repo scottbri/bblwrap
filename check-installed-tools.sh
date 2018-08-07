@@ -51,6 +51,27 @@ else
     echo "yes"
 fi
 
+echo -n "checking if terraform is installed... "
+which terraform > /dev/null
+if [ "$?" -ne "0" ]; then
+    echo "no."
+    echo "please install terraform"
+    echo "https://www.terraform.io/downloads.html"
+    echo ""
+else
+    echo "yes"
+fi
+
+echo -n "checking if ruby is installed... "
+which ruby > /dev/null
+if [ "$?" -ne "0" ]; then
+    echo "no."
+    echo "please install ruby"
+else
+    echo "yes"
+fi
+
+
 echo -n "checking if bosh-cli is installed... "
 which bosh > /dev/null
 if [ "$?" -ne "0" ]; then
@@ -74,5 +95,10 @@ if [ "$?" -ne "0" ]; then
 else
     echo "yes"
 fi
+
+echo "Install bosh build environment dependencies... "
+echo "make sure you've installed the dependencies here"
+echo "https://bosh.io/docs/cli-v2-install/#additional-dependencies"
+echo ""
 
 echo ""
