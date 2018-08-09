@@ -49,7 +49,7 @@ Now your IAAS should have proper credentials set and you should be ready to use 
 ### What you should do now:
 The following will enable the bbl command by sourcing the required env vars
 `source /Users/jbrightwell/code/bblwrap/bblstate/gcp/bosh/bosh-ENV-VARS.sh1`
-`bbl -h`                        # familiarize yourself with bbl generally
+`bbl -h                        # familiarize yourself with bbl generally`
 `bbl plan -h`                    # familiarize yourself with the bbl plan command line options
 `bbl up -h`                    # familiarize yourself with the bbl up command line options
 `bbl plan --lb-type concourse --debug`        # this will create lots of structures in $BBL_STATE_DIRECTORY
