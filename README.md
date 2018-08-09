@@ -4,7 +4,7 @@ Since `bbl` is pronounced *("bubble")*, welcome to *("bubble wrap")*
 
 `bblwrap.sh` currently supports GCP, Microsoft Azure, and is stubbed but as yet nonfunctional for AWS, and vSphere.
 
-## Docs
+## Docs 
 To really know what's going on, first head over to the [bosh-bootloader](https://github.com/cloudfoundry/bosh-bootloader) github repo and explore what exactly bbl is attempting to achieve.
 
 To get complete novices up to speed quicker, and to enable lazy Pivots to not have to think too much, `bblwrap.sh` was created to guide the user in the setup of `bbl` which in turn eases the deployment of BOSH.
