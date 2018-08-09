@@ -47,9 +47,8 @@ $ ./bblwrap.sh				# follow the prompts
 Now your IAAS should have proper credentials set and you should be ready to use bbl to create a bosh environment.
 
 ### What you should do now
-The following will enable the bbl command by sourcing the required env vars
 ```sh
-source /Users/jbrightwell/code/bblwrap/bblstate/gcp/bosh/bosh-ENV-VARS.sh1
+source $BBL_ENVIRONMENT_VARS		# to enable bbl with the required environment vars
 bbl -h					# familiarize yourself with bbl generally
 bbl plan -h				# familiarize yourself with the bbl plan command line options
 bbl up -h				# familiarize yourself with the bbl up command line options
@@ -67,8 +66,8 @@ including a jumpbox and credhub.
 ### What you should do after bbl up
 In case you lose your environment variables, execute these commands to get them back
 ```sh
-source /Users/jbrightwell/code/bblwrap/bblstate/gcp/bosh/bosh-ENV-VARS.sh
-export $BBL_STATE_DIRECTORY=/Users/jbrightwell/code/bblwrap/bblstate/gcp/bosh
+export $BBL_STATE_DIRECTORY=<path to your bblwrap/bblstate/<IAAS>/<ENV-NAME>/> folder"
+source $BBL_STATE_DIRECTORY/*-ENV-VARS.sh	# to enable bbl with the required environment vars
 eval "$(bbl print-env)"			# this will enable the bosh command with required env vars
 
 bosh alias-env $BBL_IAAS-$BBL_ENV_NAME	# this will create a bosh environment alias for future use
