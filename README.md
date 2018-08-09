@@ -54,7 +54,7 @@ bbl plan -h				# familiarize yourself with the bbl plan command line options
 bbl up -h				# familiarize yourself with the bbl up command line options
 bbl plan --lb-type concourse --debug	# this will create lots of structures in $BBL_STATE_DIRECTORY
 ```
-After executing bbl plan, now you can go into '$BBL_STATE_DIRECTORY` and make edits and customizations
+After executing bbl plan, now you can go into '$BBL_STATE_DIRECTORY` and make edits and customizations. This bosh boot loader [documentation](https://github.com/cloudfoundry/bosh-bootloader/blob/master/docs/customization.md) provideds good insights on what can be changed.
 ```sh
 bbl up --lb-type concourse --debug	# this will execute the plan with customizations on your IAAS
 ```
