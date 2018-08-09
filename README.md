@@ -60,7 +60,7 @@ bbl up --lb-type concourse --debug	# this will execute the plan with customizati
 ```
 
 
-In the future, after you bbl up a new environment, you should have a functional BOSH environment
+After you bbl up a new environment, you should have a functional BOSH environment
 including a jumpbox and credhub.
 
 ### What you should do after bbl up
