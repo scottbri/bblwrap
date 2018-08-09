@@ -32,6 +32,7 @@ askYes() {
 BBL_IAAS="$(askUser "Please pick a target IAAS: gcp, aws, azure, or vsphere? ")"
 BBL_ENV_NAME="$(askUser "Decide on a short subdomain name (like \"pcf\") for the environment? ")"
 BBL_STATE_DIRECTORY="$PWD/bblstate/$BBL_IAAS/$BBL_ENV_NAME"
+BBL_ENVIRONMENT_VARS="$BBL_STATE_DIRECTORY/$BBL_ENV_NAME-ENV-VARS.sh"
 mkdir -p "$BBL_STATE_DIRECTORY"
 
 if [ $BBL_IAAS == "gcp" ]; then
@@ -98,6 +99,7 @@ if [ $BBL_IAAS == "gcp" ]; then
 	echo ""; echo "Finished!  Here are the environment variables you need to set for bbl to deploy BOSH on $BBL_IAAS:"
 	echo "Copy and paste them into your shell and then run bbl .  Also, archive these for posterity!"
 	echo ""
+	{
 	echo "export BBL_IAAS=$BBL_IAAS"
 	echo "export BBL_ENV_NAME=$BBL_ENV_NAME"
 	echo "export BBL_STATE_DIRECTORY=$BBL_STATE_DIRECTORY"
@@ -105,6 +107,7 @@ if [ $BBL_IAAS == "gcp" ]; then
 	echo "export BBL_GCP_SERVICE_ACCOUNT_KEY=$BBL_GCP_SERVICE_ACCOUNT_KEY"
 	echo "export GCP_PROJECT_ID=$GCP_PROJECT_ID"
 	echo "export GCP_SERVICE_ACCOUNT_NAME=$GCP_SERVICE_ACCOUNT_NAME"
+	} | tee $BBL_ENVIRONMENT_VARS
 
 elif [ $BBL_IAAS == "aws" ]; then
 	echo "$BBL_IAAS not implemented yet"
@@ -206,6 +209,7 @@ elif [ $BBL_IAAS == "azure" ]; then
 	echo "Finished!  Here are the environment variables you need to set for bbl to deploy BOSH on Azure:"
 	echo "Copy and paste them into your shell and then run bbl .  Also, archive these for posterity!"
 	echo ""
+	{
 	echo "export BBL_IAAS=$BBL_IAAS"
 	echo "export BBL_ENV_NAME=$BBL_ENV_NAME"
 	echo "export BBL_STATE_DIRECTORY=$BBL_STATE_DIRECTORY"
@@ -215,6 +219,7 @@ elif [ $BBL_IAAS == "azure" ]; then
 	echo "export BBL_AZURE_APPLICATION_ID=$BBL_AZURE_CLIENT_ID"
 	echo "export BBL_AZURE_CLIENT_ID=$BBL_AZURE_CLIENT_ID"
 	echo "export BBL_AZURE_CLIENT_SECRET=$BBL_AZURE_CLIENT_SECRET"
+	} | tee $BBL_ENVIRONMENT_VARS
 else
 	echo "ERROR:  IAAS provider $BBL_IAAS is unknown"
 	exit 1
