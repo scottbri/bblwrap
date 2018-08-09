@@ -1,4 +1,5 @@
 /bblstate
+/state
 *.json
 *.key
 *.log
