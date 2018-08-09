@@ -31,7 +31,7 @@ askYes() {
 
 BBL_IAAS="$(askUser "Please pick a target IAAS: gcp, aws, azure, or vsphere? ")"
 BBL_ENV_NAME="$(askUser "Decide on a short subdomain name (like \"pcf\") for the environment? ")"
-BBL_STATE_DIRECTORY="$PWD/bblstate/$BBL_IAAS/$BBL_ENV_NAME"
+BBL_STATE_DIRECTORY="$PWD/state/$BBL_IAAS/$BBL_ENV_NAME"
 BBL_ENVIRONMENT_VARS="$BBL_STATE_DIRECTORY/$BBL_ENV_NAME-ENV-VARS.sh"
 mkdir -p "$BBL_STATE_DIRECTORY"
 

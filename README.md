@@ -66,7 +66,7 @@ including a jumpbox and credhub.
 ### What you should do after bbl up
 In case you lose your environment variables, execute these commands to get them back
 ```sh
-export $BBL_STATE_DIRECTORY=<path to your bblwrap/bblstate/<IAAS>/<ENV-NAME>/> folder"
+export $BBL_STATE_DIRECTORY=<path to your bblwrap/state/<IAAS>/<ENV-NAME>/> folder"
 source $BBL_STATE_DIRECTORY/*-ENV-VARS.sh	# to enable bbl with the required environment vars
 eval "$(bbl print-env)"			# this will enable the bosh command with required env vars
 
