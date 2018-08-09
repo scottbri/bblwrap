@@ -50,54 +50,54 @@ Now your IAAS should have proper credentials set and you should be ready to use 
 The following will enable the bbl command by sourcing the required env vars
 ```sh
 source /Users/jbrightwell/code/bblwrap/bblstate/gcp/bosh/bosh-ENV-VARS.sh1
-bbl -h				# familiarize yourself with bbl generally
+bbl -h					# familiarize yourself with bbl generally
 bbl plan -h				# familiarize yourself with the bbl plan command line options
 bbl up -h				# familiarize yourself with the bbl up command line options
-bbl plan --lb-type concourse --debug		# this will create lots of structures in $BBL_STATE_DIRECTORY
+bbl plan --lb-type concourse --debug	# this will create lots of structures in $BBL_STATE_DIRECTORY
 ```
 After executing bbl plan, now you can go into '$BBL_STATE_DIRECTORY` and make edits and customizations
 ```sh
-bbl up --lb-type concourse --debug		# this will execute the plan with customizations on your IAAS
+bbl up --lb-type concourse --debug	# this will execute the plan with customizations on your IAAS
 ```
 
 
 In the future, after you bbl up a new environment, you should have a functional BOSH environment
 including a jumpbox and credhub.
 
-What you should do then:
+###What you should do after bbl up
 In case you lose your environment variables, execute these commands to get them back
+```sh
 source /Users/jbrightwell/code/bblwrap/bblstate/gcp/bosh/bosh-ENV-VARS.sh
 export $BBL_STATE_DIRECTORY=/Users/jbrightwell/code/bblwrap/bblstate/gcp/bosh
-eval "$(bbl print-env)"                # this will enable the bosh command with required env vars
+eval "$(bbl print-env)"			# this will enable the bosh command with required env vars
 
-bosh alias-env $BBL_IAAS-$BBL_ENV_NAME        # this will create a bosh environment alias for future use
-bosh -e $BBL_IAAS-$BBL_ENV_NAME log-in        # this will test your login ability to this bosh environment
-bbl ssh --jumpbox                # this is how to ssh into the jumpbox in your bosh environment
-bbl ssh --director                # this is how to ssh into the bosh director
+bosh alias-env $BBL_IAAS-$BBL_ENV_NAME	# this will create a bosh environment alias for future use
+bosh -e $BBL_IAAS-$BBL_ENV_NAME log-in	# this will test your login ability to this bosh environment
+bbl ssh --jumpbox			# this is how to ssh into the jumpbox in your bosh environment
+bbl ssh --director			# this is how to ssh into the bosh director
 
-The following is how to create an SSH tunnel through the jumpbox to credhub
+# The following is how to create an SSH tunnel through the jumpbox to credhub
 bbl ssh-key > /tmp/jumpbox.key
 chmod 0700 /tmp/jumpbox.key
 ssh -4 -D 5000 -fNC jumpbox@`bbl jumpbox-address` -i /tmp/jumpbox.key
 export http_proxy=socks5://localhost:5000
 credhub login
-credhub find -n \'cf_admin_password\'        # you might not have cf installed in this example query
-
+credhub find -n \'cf_admin_password\'	# you might not have cf installed in this example query
+```
 
 Don't forget to upload stemcells suitable for any deployments you're considering.
 The list of available stemcells is here:  https://bosh.cloudfoundry.org/stemcells/
 
-Uploading stemcells looks like the following:
-Latest version for GCP (may not be supported by your deployment)
+Uploading stemcells looks like the following (this version may not be suitable for your deployment):
+```sh
 bosh upload-stemcell --sha1 7fec9feec30ce85784b8c0a2de465379a5882e8f \
       https://bosh.io/d/stemcells/bosh-google-kvm-ubuntu-trusty-go_agent?v=3586.27
 
-Latest version for Azure (may not be supported by your deployment)
 bosh upload-stemcell --sha1 c32675c378994b86c7122a79466074e7a0bac434 \
     https://bosh.io/d/stemcells/bosh-azure-hyperv-ubuntu-trusty-go_agent?v=3586.27
 
-Latest version for AWS (may not be supported by your deployment)
 bosh upload-stemcell --sha1 e1ab7bd57784cfcc790c41765aaad2b50b41bd8b \
   https://bosh.io/d/stemcells/bosh-aws-xen-hvm-ubuntu-trusty-go_agent?v=3586.27
+```
 
-Thanks for using bblwrap.sh!
+Thanks for using bblwrap!
