@@ -46,7 +46,7 @@ $ ./bblwrap.sh				# follow the prompts
 ## What to do next
 Now your IAAS should have proper credentials set and you should be ready to use bbl to create a bosh environment.
 
-### What you should do now:
+### What you should do now
 The following will enable the bbl command by sourcing the required env vars
 ```sh
 source /Users/jbrightwell/code/bblwrap/bblstate/gcp/bosh/bosh-ENV-VARS.sh1
