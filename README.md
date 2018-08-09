@@ -81,7 +81,7 @@ chmod 0700 /tmp/jumpbox.key
 ssh -4 -D 5000 -fNC jumpbox@`bbl jumpbox-address` -i /tmp/jumpbox.key
 export http_proxy=socks5://localhost:5000
 credhub login
-credhub find -n \'cf_admin_password\'	# you might not have cf installed in this example query
+credhub find -n 'cf_admin_password'	# you might not have cf installed in this example query
 ```
 
 Don't forget to upload stemcells suitable for any deployments you're considering.
