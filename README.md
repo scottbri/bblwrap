@@ -64,7 +64,7 @@ bbl up --lb-type concourse --debug	# this will execute the plan with customizati
 In the future, after you bbl up a new environment, you should have a functional BOSH environment
 including a jumpbox and credhub.
 
-###What you should do after bbl up
+### What you should do after bbl up
 In case you lose your environment variables, execute these commands to get them back
 ```sh
 source /Users/jbrightwell/code/bblwrap/bblstate/gcp/bosh/bosh-ENV-VARS.sh
