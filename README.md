@@ -44,19 +44,19 @@ $ ./bblwrap.sh				# follow the prompts
 ```
 
 ## What to do next
-Now your IAAS should be set and ready to use bbl to create a bosh environment.
+Now your IAAS should have proper credentials set and you should be ready to use bbl to create a bosh environment.
 
-What you should do now:
+### What you should do now:
 The following will enable the bbl command by sourcing the required env vars
-source /Users/jbrightwell/code/bblwrap/bblstate/gcp/bosh/bosh-ENV-VARS.sh
-bbl -h                        # familiarize yourself with bbl generally
-bbl plan -h                    # familiarize yourself with the bbl plan command line options
-bbl up -h                    # familiarize yourself with the bbl up command line options
-bbl plan --lb-type concourse --debug        # this will create lots of structures in $BBL_STATE_DIRECTORY
+`source /Users/jbrightwell/code/bblwrap/bblstate/gcp/bosh/bosh-ENV-VARS.sh1`
+`bbl -h`                        # familiarize yourself with bbl generally
+`bbl plan -h`                    # familiarize yourself with the bbl plan command line options
+`bbl up -h`                    # familiarize yourself with the bbl up command line options
+`bbl plan --lb-type concourse --debug`        # this will create lots of structures in $BBL_STATE_DIRECTORY
 
-after executing bbl plan, now you can go into $BBL_STATE_DIRECTORY and make edits and customizations
+After executing bbl plan, now you can go into '$BBL_STATE_DIRECTORY` and make edits and customizations
 
-bbl up --lb-type concourse --debug        # this will execute the plan with customizations on your IAAS
+`bbl up --lb-type concourse --debug`        # this will execute the plan with customizations on your IAAS
 
 
 In the future, after you bbl up a new environment, you should have a functional BOSH environment
