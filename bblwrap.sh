@@ -53,7 +53,7 @@ if [ $BBL_IAAS == "gcp" ]; then
 	echo ""; echo "Let's determine your GCP Project ID"
 	echo "gcloud projects list"
 	GCP_PROJECTS="`gcloud projects list | grep -v "PROJECT_NUMBER" | awk '{print $1}'`"
-	if [ `echo $GCP_PROJECTS | wc -l` == "1" ]; then
+	if [ `echo $GCP_PROJECTS | wc -w` == "1" ]; then
 		GCP_PROJECT_ID=$GCP_PROJECTS
 		echo "Since you only have access to a single GCP project.  We'll use it for this deployment"
 		echo "GCP_PROJECT_ID=$GCP_PROJECT_ID"
