@@ -99,4 +99,7 @@ bosh upload-stemcell --sha1 e1ab7bd57784cfcc790c41765aaad2b50b41bd8b \
   https://bosh.io/d/stemcells/bosh-aws-xen-hvm-ubuntu-trusty-go_agent?v=3586.27
 ```
 
+### Concourse
+You can always follow these instructions to install a Concourse server and you'll have a nice management plane for further deployments:  https://github.com/cloudfoundry/bosh-bootloader/blob/master/docs/concourse.md
+
 Thanks for using bblwrap!
