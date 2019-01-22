@@ -89,10 +89,10 @@ if [ $BBL_IAAS == "gcp" ]; then
 
 
 	sleep 1; echo ""; echo "Binding the service account to the project with editor role"
-	echo "gcloud projects add-iam-policy-binding ${GCP_PROJECT_ID} --member=\"serviceAccount:${GCP_SERVICE_ACCOUNT_NAME}@${GCP_PROJECT_ID}.iam.gserviceaccount.com\" --role='roles/editor'"
+	echo "gcloud projects add-iam-policy-binding ${GCP_PROJECT_ID} --member=\"serviceAccount:${GCP_SERVICE_ACCOUNT_NAME}@${GCP_PROJECT_ID}.iam.gserviceaccount.com\" --role='roles/owner'"
 	askYes "Are you good with me issuing the above command?"; RETVAL=$?
 	if [[ $RETVAL -eq 1 ]]; then echo "Bailing out now!  Good luck bbl-ing up on $BBL_IAAS!"; exit 1; fi
-	gcloud projects add-iam-policy-binding ${GCP_PROJECT_ID} --member="serviceAccount:${GCP_SERVICE_ACCOUNT_NAME}@${GCP_PROJECT_ID}.iam.gserviceaccount.com" --role='roles/editor'
+	gcloud projects add-iam-policy-binding ${GCP_PROJECT_ID} --member="serviceAccount:${GCP_SERVICE_ACCOUNT_NAME}@${GCP_PROJECT_ID}.iam.gserviceaccount.com" --role='roles/owner'
 	RETVAL=$?
 	if [[ $RETVAL -eq 1 ]]; then echo "Hmmm.  You may need to execute a \"gcloud init\" if you're having issues with permissions."; exit 1; fi
 
